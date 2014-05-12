@@ -8,13 +8,25 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.rubymen.bowlingandroid.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.rubymen.bowlingandroid.GamesActivity"
+            android:label="@string/title_activity_games" >
+        </activity>
+        <activity
+            android:name="com.rubymen.bowlingandroid.SplashScreenActivity"
+            android:label="@string/title_activity_splash_screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.rubymen.bowlingandroid.CreateGame"
+            android:label="@string/title_activity_create_game" >
+        </activity>
+        <activity
+            android:name="com.rubymen.bowlingandroid.ShowGameActivity"
+            android:label="@string/title_activity_show_game" >
         </activity>
     </application>
 
