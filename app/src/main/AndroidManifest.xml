@@ -17,15 +17,16 @@
         <activity
             android:name="com.rubymen.bowlingandroid.SplashScreenActivity"
             android:label="@string/title_activity_splash_screen" >
+        </activity>
+        <activity
+            android:name="com.rubymen.bowlingandroid.CreateGame"
+            android:label="@string/title_activity_create_game" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.rubymen.bowlingandroid.CreateGame"
-            android:label="@string/title_activity_create_game" >
         </activity>
         <activity
             android:name="com.rubymen.bowlingandroid.ShowGameActivity"

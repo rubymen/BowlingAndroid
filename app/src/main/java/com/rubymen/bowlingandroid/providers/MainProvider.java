@@ -3,6 +3,7 @@ package com.rubymen.bowlingandroid.providers;
 import com.google.gson.Gson;
 import com.rubymen.bowlingandroid.models.Game;
 
+
 public class MainProvider {
 
     private static Game[] games;
@@ -17,8 +18,8 @@ public class MainProvider {
         }
 
         String response = client.getResponse();
-        Gson gson = new Gson();
 
+        Gson gson = new Gson();
         games = gson.fromJson(response, Game[].class);
     }
 
