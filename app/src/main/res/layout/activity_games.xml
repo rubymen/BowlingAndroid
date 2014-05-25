@@ -34,7 +34,14 @@
                 <LinearLayout
                     android:id="@+id/tab1"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"></LinearLayout>
+                    android:layout_height="fill_parent">
+
+                    <ListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/list_game_inprogress"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tab2"
