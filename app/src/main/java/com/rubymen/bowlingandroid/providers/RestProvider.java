@@ -108,16 +108,13 @@ public class RestProvider {
 
                 if (!params.isEmpty()) {
                     Gson gson = new GsonBuilder().create();
-                    Map<String, Map<String, String>> obj = new HashMap<String, Map<String, String>>();
                     Map<String, String> paramsKeyValue = new HashMap<String, String>();
 
                     for (NameValuePair p : params) {
                         paramsKeyValue.put(p.getName(), p.getValue());
                     }
 
-                    obj.put(this.model, paramsKeyValue);
-
-                    String json = gson.toJson(obj);
+                    String json = gson.toJson(paramsKeyValue);
                     StringEntity se = new StringEntity(json.toString());
 
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));

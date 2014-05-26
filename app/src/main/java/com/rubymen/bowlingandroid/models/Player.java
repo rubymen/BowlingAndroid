@@ -10,6 +10,10 @@ public class Player {
     @SerializedName("Pseudo")
     private String pseudo;
 
+    public Player(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
     public int getId() {
         return id;
     }

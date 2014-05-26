@@ -1,7 +1,9 @@
 package com.rubymen.bowlingandroid.models;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+
 
 public class Game implements Serializable {
 
