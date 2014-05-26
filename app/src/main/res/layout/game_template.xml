@@ -11,10 +11,26 @@
         android:text=""
         android:id="@+id/id" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Lane id"
-        android:id="@+id/lane_id" />
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Lane id"
+            android:id="@+id/lane_id" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="State"
+            android:id="@+id/state"
+            android:layout_marginLeft="40dp" />
+    </LinearLayout>
+
 </LinearLayout>

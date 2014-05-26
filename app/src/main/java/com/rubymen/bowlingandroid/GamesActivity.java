@@ -1,15 +1,12 @@
 package com.rubymen.bowlingandroid;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TabHost;
 import android.widget.TextView;
 import com.rubymen.bowlingandroid.adapters.ListGamesAdapter;
 import com.rubymen.bowlingandroid.models.Game;
@@ -35,24 +32,21 @@ public class GamesActivity extends Activity {
     }
 
     private class Async extends AsyncTask<String, Void, String> {
-        @Override
+
         protected String doInBackground(String... params) {
             MainProvider.fetchGamesFromWebservice();
             return null;
         }
 
-        @Override
         protected void onPostExecute(String result) {
             Game[] games = MainProvider.getGames();
             final ListGamesAdapter adapter = new ListGamesAdapter(GamesActivity.this, R.layout.game_template, games);
             listView.setAdapter(adapter);
         }
 
-        @Override
         protected void onPreExecute() {
         }
 
-        @Override
         protected void onProgressUpdate(Void... values) {
         }
     }

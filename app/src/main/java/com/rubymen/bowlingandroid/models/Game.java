@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Game implements Serializable {
+
     @SerializedName("Id")
     private String id;
     @SerializedName("Lane_id")
@@ -34,4 +35,5 @@ public class Game implements Serializable {
     public void setState(String state) {
         this.state = state;
     }
+
 }

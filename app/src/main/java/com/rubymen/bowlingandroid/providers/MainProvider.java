@@ -4,9 +4,10 @@ import com.google.gson.Gson;
 import com.rubymen.bowlingandroid.models.Game;
 
 public class MainProvider {
+
     private static Game[] games;
 
-    public static void fetchGamesFromWebservice(){
+    public static void fetchGamesFromWebservice() {
         RestProvider client = new RestProvider("http://bowling.noip.me/games/");
 
         try {
@@ -21,5 +22,8 @@ public class MainProvider {
         games = gson.fromJson(response, Game[].class);
     }
 
-    public static Game[] getGames(){ return games; }
+    public static Game[] getGames() {
+        return games;
+    }
+
 }
