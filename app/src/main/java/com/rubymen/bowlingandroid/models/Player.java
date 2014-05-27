@@ -7,6 +7,7 @@ public class Player {
 
     @SerializedName("Id")
     private int id;
+
     @SerializedName("Pseudo")
     private String pseudo;
 

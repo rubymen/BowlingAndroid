@@ -28,6 +28,37 @@ public class MainProvider {
         games = gson.fromJson(response, Game[].class);
     }
 
+    public static Game fetchGameFromWebservice(int id) {
+        RestProvider client = new RestProvider("http://bowling.noip.me/games/" + id);
+
+        try {
+            client.Execute(RequestMethod.GET);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String response = client.getResponse();
+
+        Gson gson = new Gson();
+        Game game = gson.fromJson(response, Game.class);
+
+        return game;
+    }
+
+    public static Game findGameById(int id) {
+        Game game = new Game();
+
+        if (id != 0) {
+            for (Game g : games) {
+                if (id == g.getId()) {
+                    game = g;
+                }
+            }
+        }
+
+        return game;
+    }
+
     public static Game createGame() {
         RestProvider client = new RestProvider("http://bowling.noip.me/games/new");
 
