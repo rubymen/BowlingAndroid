@@ -6,50 +6,89 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rubymen.bowlingandroid.adapters.ListGamesAdapter;
 import com.rubymen.bowlingandroid.models.Game;
 import com.rubymen.bowlingandroid.providers.MainProvider;
 
-public class GamesActivity extends Activity {
+import java.util.ArrayList;
 
-    ListView listView;
+public class GamesActivity extends Activity implements View.OnClickListener, OnItemClickListener {
+
+    private ListGamesAdapter adapter = null;
+
+    private ArrayList<Game> games = null;
+
+    private ListView listView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
-        new Async().execute();
-        listView = (ListView) findViewById(R.id.list_game_inprogress);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView idGame = (TextView) view.findViewById(R.id.id);
-                Intent detailPage = new Intent(GamesActivity.this, ShowGameActivity.class);
-                detailPage.putExtra("idGame", idGame.getText());
-                startActivity(detailPage);
-            }
-        });
+
+        games = new ArrayList<Game>();
+
+        listView = (ListView) findViewById(R.id.games_list);
+
+        adapter = new ListGamesAdapter(this, R.layout.game_template, games);
+
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+
+        new LoadGames().execute();
+
+        Button newGameBtn = (Button) findViewById(R.id.new_game_btn);
+        newGameBtn.setOnClickListener(this);
     }
 
-    private class Async extends AsyncTask<String, Void, String> {
+    public void onClick(View v) {
+        Button caller = (Button) v;
+
+        if (caller.getId() == R.id.new_game_btn) {
+            Intent createGameActivity = new Intent(this, CreateGameActivity.class);
+            startActivityForResult(createGameActivity, 1);
+        }
+    }
+
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        TextView idGame = (TextView) view.findViewById(R.id.game_id);
+        Intent showGameActivity = new Intent(GamesActivity.this, ShowGameActivity.class);
+        showGameActivity.putExtra("id", idGame.getText());
+        startActivityForResult(showGameActivity, 1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            new LoadGames().execute();
+        }
+    }
+
+    private class LoadGames extends AsyncTask<String, Void, String> {
 
         protected String doInBackground(String... params) {
             MainProvider.fetchGamesFromWebservice();
             return null;
         }
 
-        protected void onPostExecute(String result) {
-            Game[] games = MainProvider.getGames();
-            final ListGamesAdapter adapter = new ListGamesAdapter(GamesActivity.this, R.layout.game_template, games);
-            listView.setAdapter(adapter);
-        }
-
         protected void onPreExecute() {
+            games.clear();
+            Toast.makeText(getApplicationContext(), "Chargement des parties...", Toast.LENGTH_SHORT).show();
         }
 
-        protected void onProgressUpdate(Void... values) {
+        protected void onPostExecute(String result) {
+            Game[] loadedGames = MainProvider.getGames();
+
+            for (Game g : loadedGames) {
+                games.add(g);
+            }
+
+            adapter.notifyDataSetChanged();
         }
+
     }
 
 }

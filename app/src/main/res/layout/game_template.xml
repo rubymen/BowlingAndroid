@@ -9,28 +9,13 @@
         android:layout_height="0dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text=""
-        android:id="@+id/id" />
+        android:id="@+id/game_id" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Lane id"
-            android:id="@+id/lane_id" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="State"
-            android:id="@+id/state"
-            android:layout_marginLeft="40dp" />
-    </LinearLayout>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Partie 1"
+        android:id="@+id/game_lane_id" />
 
 </LinearLayout>

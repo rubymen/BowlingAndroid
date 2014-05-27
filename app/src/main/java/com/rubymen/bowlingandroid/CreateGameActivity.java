@@ -1,6 +1,8 @@
 package com.rubymen.bowlingandroid;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.rubymen.bowlingandroid.models.Game;
 import com.rubymen.bowlingandroid.models.Player;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 public class CreateGameActivity extends Activity implements View.OnClickListener, OnItemClickListener {
 
     private ArrayAdapter adapter;
+
+    private ProgressDialog dialog;
 
     private ListView listView;
 
@@ -53,7 +56,6 @@ public class CreateGameActivity extends Activity implements View.OnClickListener
         if (caller.getId() == R.id.add_player_btn) {
             addPlayer();
         } else if (caller.getId() == R.id.add_game_btn) {
-            Toast.makeText(getApplicationContext(), "Création de la partie...", Toast.LENGTH_SHORT).show();
             new CreatingGame().execute();
         }
     }
@@ -87,8 +89,16 @@ public class CreateGameActivity extends Activity implements View.OnClickListener
             return null;
         }
 
+        protected void onPreExecute() {
+            dialog = ProgressDialog.show(CreateGameActivity.this, "", "Création de la partie...", true);
+        }
+
         protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), "Prêt à jouer !", Toast.LENGTH_SHORT).show();
+            dialog.hide();
+
+            Intent createGameActivity = new Intent();
+            setResult(RESULT_OK, createGameActivity);
+            finish();
         }
 
     }

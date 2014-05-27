@@ -14,10 +14,17 @@
         android:orientation="vertical"
         android:layout_alignParentTop="true">
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Créer un jeu"
+            android:id="@+id/new_game_btn"
+            android:layout_gravity="center_horizontal" />
+
         <ListView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/list_game_inprogress"
+            android:id="@+id/games_list"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
 </RelativeLayout>

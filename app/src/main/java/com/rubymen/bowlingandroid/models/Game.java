@@ -8,17 +8,17 @@ import java.io.Serializable;
 public class Game implements Serializable {
 
     @SerializedName("Id")
-    private String id;
+    private int id;
     @SerializedName("Lane_id")
     private String lane_id;
     @SerializedName("State")
     private String state;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -14,7 +14,7 @@ public class MainProvider {
     }
 
     public static void fetchGamesFromWebservice() {
-        RestProvider client = new RestProvider("http://bowling.noip.me/games/");
+        RestProvider client = new RestProvider("http://bowling.noip.me/games/recents");
 
         try {
             client.Execute(RequestMethod.GET);
@@ -45,7 +45,7 @@ public class MainProvider {
         return game;
     }
 
-    public static void addPlayerToGame(String id, Player p) {
+    public static void addPlayerToGame(int id, Player p) {
         RestProvider client = new RestProvider("http://bowling.noip.me/games/" + id + "/player");
         client.AddParam("Pseudo", p.getPseudo());
 
