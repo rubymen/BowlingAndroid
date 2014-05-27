@@ -17,6 +17,7 @@
         <activity
             android:name="com.rubymen.bowlingandroid.SplashScreenActivity"
             android:label="@string/title_activity_splash_screen" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.rubymen.bowlingandroid.CreateGame"
+            android:name="com.rubymen.bowlingandroid.CreateGameActivity"
             android:label="@string/title_activity_create_game" >
         </activity>
         <activity

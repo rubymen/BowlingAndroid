@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.rubymen.bowlingandroid.adapters.ListGamesAdapter;
 import com.rubymen.bowlingandroid.models.Game;
 import com.rubymen.bowlingandroid.providers.MainProvider;
