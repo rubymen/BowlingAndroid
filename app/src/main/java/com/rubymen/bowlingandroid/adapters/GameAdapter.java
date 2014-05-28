@@ -20,18 +20,11 @@ public class GameAdapter extends BaseExpandableListAdapter {
 
     private Context context;
 
-    private Game game;
-
     private ArrayList<Player> players;
 
-    public GameAdapter(Context context, Game game) {
+    public GameAdapter(Context context, ArrayList<Player> players) {
         this.context = context;
-        this.game = game;
-        this.players = new ArrayList<Player>();
-
-        for (Player p : game.getPlayers()) {
-            this.players.add(p);
-        }
+        this.players = players;
     }
 
     public int getGroupCount() {

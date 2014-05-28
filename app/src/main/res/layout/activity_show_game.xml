@@ -8,12 +8,27 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.rubymen.bowlingandroid.ShowGameActivity">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="Rafraîchir la partie"
+            android:id="@+id/refresh_game_btn"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
     <ExpandableListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/game_list"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/linearLayout" />
 
 </RelativeLayout>

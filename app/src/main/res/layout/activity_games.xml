@@ -15,9 +15,9 @@
         android:layout_alignParentTop="true">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Créer un jeu"
+            android:text="Créer une partie"
             android:id="@+id/new_game_btn"
             android:layout_gravity="center_horizontal" />
 
@@ -27,4 +27,5 @@
             android:id="@+id/games_list"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
+
 </RelativeLayout>
