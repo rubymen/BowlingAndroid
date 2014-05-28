@@ -9,8 +9,12 @@ public class Game implements Serializable {
 
     @SerializedName("Id")
     private int id;
+
     @SerializedName("Lane_id")
     private String lane_id;
+
+    private Player[] players;
+
     @SerializedName("State")
     private String state;
 
@@ -28,6 +32,14 @@ public class Game implements Serializable {
 
     public void setLane_id(String lane_id) {
         this.lane_id = lane_id;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Player[] players) {
+        this.players = players;
     }
 
     public String getState() {
