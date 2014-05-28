@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.rubymen.bowlingandroid.R;
 import com.rubymen.bowlingandroid.models.Game;
 import com.rubymen.bowlingandroid.models.Player;
+import com.rubymen.bowlingandroid.models.Throw;
+import com.rubymen.bowlingandroid.models.Turn;
 
 import java.util.ArrayList;
 
@@ -36,48 +38,75 @@ public class GameAdapter extends BaseExpandableListAdapter {
         return players.size();
     }
 
-    public int getChildrenCount(int i) {
-        return 0;
+    public int getChildrenCount(int childPosition) {
+        return players.get(childPosition).getTurns().length;
     }
 
-    public Object getGroup(int i) {
-        return players.get(i);
+    public Object getGroup(int groupPosition) {
+        return players.get(groupPosition);
     }
 
-    public Object getChild(int i, int i2) {
-        return null;
+    public Object getChild(int groupPosition, int childPosition) {
+        return players.get(groupPosition).getTurns()[childPosition];
     }
 
-    public long getGroupId(int i) {
-        return i;
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
     }
 
-    public long getChildId(int i, int i2) {
-        return 0;
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
     }
 
     public boolean hasStableIds() {
         return true;
     }
 
-    public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-        Player player = (Player) getGroup(i);
+    public View getGroupView(int groupPosition, boolean b, View view, ViewGroup viewGroup) {
+        Player player = (Player) getGroup(groupPosition);
 
         if (view == null) {
             view = ((LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.player_template, null);
         }
 
-        TextView turn = (TextView) view.findViewById(R.id.player_text);
-        turn.setText(player.getPseudo());
+        TextView playerText = (TextView) view.findViewById(R.id.player_text);
+        playerText.setText(player.getPseudo());
+
+        int gameTotal = 0;
+
+        for (Turn t : player.getTurns()) {
+            gameTotal += t.getScore();
+        }
+
+        TextView gameTotalText = (TextView) view.findViewById(R.id.game_total_text);
+        gameTotalText.setText(Integer.toString(gameTotal));
 
         return view;
     }
 
-    public View getChildView(int i, int i2, boolean b, View view, ViewGroup viewGroup) {
-        return null;
+    public View getChildView(int groupPosition, int childPosition, boolean b, View view, ViewGroup viewGroup) {
+        Turn turn = (Turn) getChild(groupPosition, childPosition);
+
+        if (view == null) {
+            view = ((LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.turn_template, null);
+        }
+
+        String turnDetail = new String();
+
+        for (Throw t : turn.getThrowsList()) {
+            turnDetail += t.getFallenSkittles() + " ";
+        }
+
+        TextView turnText = (TextView) view.findViewById(R.id.turn_text);
+        turnText.setText(turnDetail);
+
+        TextView turnTotalText = (TextView) view.findViewById(R.id.turn_total_text);
+        turnTotalText.setText(Integer.toString(turn.getScore()));
+
+        return view;
     }
 
-    public boolean isChildSelectable(int i, int i2) {
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
 

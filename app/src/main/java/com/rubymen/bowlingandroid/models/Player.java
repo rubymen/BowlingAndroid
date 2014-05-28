@@ -11,6 +11,8 @@ public class Player {
     @SerializedName("Pseudo")
     private String pseudo;
 
+    private Turn[] turns;
+
     public Player(String pseudo) {
         this.pseudo = pseudo;
     }
@@ -29,6 +31,14 @@ public class Player {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
+    }
+
+    public Turn[] getTurns() {
+        return turns;
+    }
+
+    public void setTurns(Turn[] turns) {
+        this.turns = turns;
     }
 
 }
