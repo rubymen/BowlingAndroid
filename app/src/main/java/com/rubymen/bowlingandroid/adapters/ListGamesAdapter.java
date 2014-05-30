@@ -12,8 +12,15 @@ import com.rubymen.bowlingandroid.models.Game;
 
 import java.util.ArrayList;
 
+
+/**
+ * Adapter
+ */
 public class ListGamesAdapter extends ArrayAdapter<Game> {
 
+    /**
+     * Activity that used the adapter
+     */
     Activity activity;
 
     public ListGamesAdapter(Activity context, int resource, ArrayList<Game> objects) {

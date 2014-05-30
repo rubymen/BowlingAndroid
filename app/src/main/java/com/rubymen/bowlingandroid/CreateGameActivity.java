@@ -22,13 +22,22 @@ import java.util.ArrayList;
 
 public class CreateGameActivity extends Activity implements View.OnClickListener, OnItemClickListener {
 
+    /**
+     * List adapter for players
+     */
     private ArrayAdapter adapter;
 
     private ProgressDialog dialog;
 
+    /**
+     * List view
+     */
     private ListView listView;
 
-    private ArrayList<String> players = null;
+    /**
+     * Local list of players
+     */
+    private ArrayList<String> players;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +59,10 @@ public class CreateGameActivity extends Activity implements View.OnClickListener
         addGameBtn.setOnClickListener(this);
     }
 
+    /**
+     * Buttons bind
+     * @param v Current view
+     */
     public void onClick(View v) {
         Button caller = (Button) v;
 
@@ -60,12 +73,22 @@ public class CreateGameActivity extends Activity implements View.OnClickListener
         }
     }
 
+    /**
+     * Remove player on click
+     * @param adapterView Adapter
+     * @param view Current view
+     * @param i Player clicked
+     * @param l The row id of the player that was clicked
+     */
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         players.remove(i);
 
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Add player from EditText and clean it after adding
+     */
     private void addPlayer() {
         EditText player = (EditText) findViewById(R.id.add_player_text);
         String pseudo = player.getText().toString();
@@ -77,6 +100,9 @@ public class CreateGameActivity extends Activity implements View.OnClickListener
         player.setText("");
     }
 
+    /**
+     * Async class to create game with the array of players
+     */
     private class CreatingGame extends AsyncTask<String, Void, String> {
 
         protected String doInBackground(String... strings) {

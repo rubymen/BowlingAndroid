@@ -18,12 +18,24 @@ import java.util.ArrayList;
 
 public class ShowGameActivity extends Activity implements View.OnClickListener {
 
+    /**
+     * Expandable list adapter for game
+     */
     private GameAdapter adapter;
 
+    /**
+     * Selected game
+     */
     private Game game;
 
+    /**
+     * Id of the selected game
+     */
     private int id;
 
+    /**
+     * List of players in the game
+     */
     private ArrayList<Player> players;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +62,10 @@ public class ShowGameActivity extends Activity implements View.OnClickListener {
         refreshGameBtn.setOnClickListener(this);
     }
 
+    /**
+     * Buttons bind
+     * @param v Current view
+     */
     public void onClick(View v) {
         Button caller = (Button) v;
 
@@ -58,6 +74,9 @@ public class ShowGameActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    /**
+     * Async class to load game
+     */
     private class LoadGame extends AsyncTask<String, Void, String> {
 
         protected String doInBackground(String... params) {
@@ -77,6 +96,8 @@ public class ShowGameActivity extends Activity implements View.OnClickListener {
 
         protected void onPostExecute(String result) {
             adapter.notifyDataSetChanged();
+
+            Toast.makeText(getApplicationContext(), "C'est fait !", Toast.LENGTH_SHORT).show();
         }
 
     }

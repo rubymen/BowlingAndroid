@@ -5,16 +5,31 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 
+/**
+ * Game model
+ */
 public class Game implements Serializable {
 
+    /**
+     * Id of the game
+     */
     @SerializedName("Id")
     private int id;
 
+    /**
+     * Id of the lane
+     */
     @SerializedName("Lane_id")
     private String lane_id;
 
+    /**
+     * Array of Player attached to the game
+     */
     private Player[] players;
 
+    /**
+     * Current state of the game
+     */
     @SerializedName("State")
     private String state;
 

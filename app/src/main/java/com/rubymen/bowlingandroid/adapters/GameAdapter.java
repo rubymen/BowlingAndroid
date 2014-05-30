@@ -16,10 +16,19 @@ import com.rubymen.bowlingandroid.models.Turn;
 import java.util.ArrayList;
 
 
+/**
+ * Adapter for the expandable list of viewing a game
+ */
 public class GameAdapter extends BaseExpandableListAdapter {
 
+    /**
+     * Context that used the adapter
+     */
     private Context context;
 
+    /**
+     * List of players
+     */
     private ArrayList<Player> players;
 
     public GameAdapter(Context context, ArrayList<Player> players) {

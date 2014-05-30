@@ -20,10 +20,19 @@ import java.util.ArrayList;
 
 public class GamesActivity extends Activity implements View.OnClickListener, OnItemClickListener {
 
-    private ListGamesAdapter adapter = null;
+    /**
+     * List adapter for players
+     */
+    private ListGamesAdapter adapter;
 
-    private ArrayList<Game> games = null;
+    /**
+     * Local list of games
+     */
+    private ArrayList<Game> games;
 
+    /**
+     * List view
+     */
     private ListView listView;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,10 @@ public class GamesActivity extends Activity implements View.OnClickListener, OnI
         newGameBtn.setOnClickListener(this);
     }
 
+    /**
+     * Buttons bind
+     * @param v Current view
+     */
     public void onClick(View v) {
         Button caller = (Button) v;
 
@@ -54,6 +67,13 @@ public class GamesActivity extends Activity implements View.OnClickListener, OnI
         }
     }
 
+    /**
+     * Access to game view on click
+     * @param adapterView Adapter
+     * @param view Current view
+     * @param i Game clicked
+     * @param l The row id of the game that was clicked
+     */
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         TextView idGame = (TextView) view.findViewById(R.id.game_id);
         Intent showGameActivity = new Intent(GamesActivity.this, ShowGameActivity.class);
@@ -61,12 +81,21 @@ public class GamesActivity extends Activity implements View.OnClickListener, OnI
         startActivityForResult(showGameActivity, 1);
     }
 
+    /**
+     * Handler when app comes on this page, refresh games
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             new LoadGames().execute();
         }
     }
 
+    /**
+     * Async class to load games
+     */
     private class LoadGames extends AsyncTask<String, Void, String> {
 
         protected String doInBackground(String... params) {
@@ -87,6 +116,8 @@ public class GamesActivity extends Activity implements View.OnClickListener, OnI
             }
 
             adapter.notifyDataSetChanged();
+
+            Toast.makeText(getApplicationContext(), "C'est fait !", Toast.LENGTH_SHORT).show();
         }
 
     }

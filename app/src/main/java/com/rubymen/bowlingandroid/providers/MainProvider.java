@@ -7,12 +7,18 @@ import com.rubymen.bowlingandroid.models.Player;
 
 public class MainProvider {
 
+    /**
+     * Persist fetched games
+     */
     private static Game[] games;
 
     public static Game[] getGames() {
         return games;
     }
 
+    /**
+     * Load games for webservice
+     */
     public static void fetchGamesFromWebservice() {
         RestProvider client = new RestProvider("http://bowling.noip.me/games/recents");
 
@@ -28,6 +34,11 @@ public class MainProvider {
         games = gson.fromJson(response, Game[].class);
     }
 
+    /**
+     * Load specific game from the webservice
+     * @param id Id of the game
+     * @return The fetched game
+     */
     public static Game fetchGameFromWebservice(int id) {
         RestProvider client = new RestProvider("http://bowling.noip.me/games/" + id);
 
@@ -45,6 +56,11 @@ public class MainProvider {
         return game;
     }
 
+    /**
+     * Find a game into the `games` array
+     * @param id Id of the game
+     * @return The finded game
+     */
     public static Game findGameById(int id) {
         Game game = new Game();
 
@@ -59,6 +75,10 @@ public class MainProvider {
         return game;
     }
 
+    /**
+     * Create a game in the webservice
+     * @return The created game
+     */
     public static Game createGame() {
         RestProvider client = new RestProvider("http://bowling.noip.me/games/new");
 
@@ -76,6 +96,11 @@ public class MainProvider {
         return game;
     }
 
+    /**
+     * Add player to a game into the webservice
+     * @param id Id of the game
+     * @param p Player to attach
+     */
     public static void addPlayerToGame(int id, Player p) {
         RestProvider client = new RestProvider("http://bowling.noip.me/games/" + id + "/player");
         client.AddParam("Pseudo", p.getPseudo());

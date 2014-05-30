@@ -27,6 +27,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * REST connector which include a list of k-v headers/params
+ */
 public class RestProvider {
 
     private ArrayList<NameValuePair> params;
@@ -50,12 +53,21 @@ public class RestProvider {
         return response;
     }
 
+    /**
+     * Constructor of a provider with url
+     * @param url Url of data
+     */
     public RestProvider(String url) {
         this.url = url;
         params = new ArrayList<NameValuePair>();
         headers = new ArrayList<NameValuePair>();
     }
 
+    /**
+     * Constructor of a provider with url and object which serves of key for params
+     * @param url Url of data
+     * @param model Key for all the params
+     */
     public RestProvider(String url, String model) {
         this.url = url;
         this.model = model;
